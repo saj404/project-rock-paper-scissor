@@ -1,20 +1,67 @@
+/*
 function userOption() {
     let rawUserSelect = prompt("Choose between rock, paper, scissor");
     let userSelect;
 
-    if (rawUserSelect !== null) { //Added a condition check for string.
+    if (rawUserSelect !== null) {
         userSelect = rawUserSelect.toLowerCase();
     }
 
-    switch (true) {
-        case "rock": break;
-        case "paper": break;
-        case "scissor": break;
-        case null: //Added null case if user exits the prompt without typing any string.
-        default:
-            console.log("Type rock, paper, or scissor");
-            userOption();
+    if (userSelect === "rock") {
+        return rawUserSelect.toLowerCase();
+    } else if (userSelect === "paper") {
+        return rawUserSelect.toLowerCase();
+    } else if (userSelect === "scissor") {
+        return rawUserSelect.toLowerCase();
+    } else {
+        console.log("Please choose rock, paper, or scissor.");
+        userOption();
+    }
+}
+
+function getValue() {
+    return prompt("Select between rock, paper, or scissor");
+}
+
+function userOption() {
+    let rawUserSelect = getValue();
+    
+    while (rawUserSelect === null) {
+        console.log("Please choose between rock, paper, or scissor");
+        rawUserSelect = rawUserSelect();
+    }
+
+    let userSelect = rawUserSelect.toLowerCase();
+    switch(userSelect) {
+        case "rock":
+        case "paper":
+        case "scissor":
             break;
+        default:
+            console.log("Please choose between rock, paper, or scissor");
+            rawUserSelect();
+    }
+    return userSelect;
+}
+
+*/
+
+function userOption() {
+    let rawUserSelect = prompt("Select between rock, paper, or scissor");
+    let userSelect;
+
+    if (rawUserSelect !== null) {
+        userSelect = rawUserSelect.toLowerCase();
+    }
+
+    switch(userSelect) {
+        case "rock":
+        case "paper":
+        case "scissor":
+            break;
+        default:
+            console.log("Please choose between rock, paper, or scissor");
+            userSelect = userOption(); //Added '=' operator to fix issue returning previous incorrect value
     }
     return userSelect;
 }
