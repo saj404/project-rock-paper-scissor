@@ -1,23 +1,16 @@
-/*
-get user-select
-output random computer-select
-compare user-select over computer-select
-
-if user-select wins,
-output "You won!"
-if user-select lose,
-output "You lose! better luck next time",
-if draw,
-output "Give it another shot", and ask for user-select
-*/
-
 function userOption() {
     let rawUserSelect = prompt("Choose between rock, paper, scissor");
-    userSelect = rawUserSelect.toLowerCase();
-    switch (userSelect) {
+    let userSelect;
+
+    if (rawUserSelect !== null) { //Added a condition check for string.
+        userSelect = rawUserSelect.toLowerCase();
+    }
+
+    switch (true) {
         case "rock": break;
         case "paper": break;
         case "scissor": break;
+        case null: //Added null case if user exits the prompt without typing any string.
         default:
             console.log("Type rock, paper, or scissor");
             userOption();
@@ -67,7 +60,7 @@ function runGame() {
                 console.log(`User Score: ${userScore} ; Computer Score: ${computerScore}`);
                 break;
             case userSelect === computerSelect:
-                console.log("It's a draw! Try again by refreshing the browser.");
+                console.log("It's a draw!");
                 console.log(`User Score: ${userScore} ; Computer Score: ${computerScore}`);
                 break;
         }
