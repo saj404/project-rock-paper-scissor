@@ -3,9 +3,51 @@
 <head>
   <meta charset="utf-8">
   <title>Function library example</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Rock, Paper, Scissor Game!</h1>
+  <nav>
+    <h1 id="game-title">Rock, Paper, Scissor Game!</h1>
+    <hr>
+    <hr>
+  </nav>
+
+  <main>
+    <div id="display">
+      <br>
+      <p id="text-display">First to five wins the game!</p>
+    </div>
+    <div id="player-div">
+      <p>Player Score: <span id="player-score"></span></p>
+      <div id="player-select">
+        <img class="select-img" id= "player-select-img" src="" alt="">
+      </div>
+      <div id="player-option-cntnr">
+        <button data-value="rock">Rock</button>
+        <button data-value="paper">Paper</button>
+        <button data-value="scissor">Scissor</button>
+      </div>
+    </div>
+
+    <div id="vertical-hr"></div>
+
+    <div id="computer-div">
+      <p>Computer Score: <span id="computer-score"></span></p>
+      <div id="computer-select">
+        <img class="select-img" id= "computer-select-img" src="" alt="">
+      </div>
+      <div id="computer-option-cntnr">
+        <button data-value="rock">Rock</button>
+        <button data-value="paper">Paper</button>
+        <button data-value="scissor">Scissor</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="scoreboard">
+    
+    
+  </div>
   
   <script src="script.js"></script>
 </body>

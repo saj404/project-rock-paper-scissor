@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1f6e0b;
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    font-family: 'Courgette', cursive;
+    color:#f5f1f1;
+}
+
+button {
+    background-color: gold;
+    font-family: 'Courgette', cursive;
+    font-size: 1.2em;
+    padding: 5px 12px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px hsla(0, 0%, 21%, .5);
+}
+#player-option-cntnr button:active {
+    box-shadow: 1px 1px 20px rgba(243, 239, 6, 0.5);
+    transform: scale(0.92, 0.92);
+}
+
+/* title */
+nav {
+    background-color: #9a1919;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23df5416' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+#game-title {
+    text-align: center;
+    font-size: 2.3em;
+    margin: 0;
+    padding: .5em 0;
+}
+hr {
+    border-top: 5px solid gold;
+    box-shadow: 1px 1px 4px hsla(0, 0%, 21%, .5);
+}
+
+main {
+    display: flex;
+}
+
+main > * {
+    flex-grow: 2;
+}
+
+#display {
+    width: 100px;
+    height: 10vh;
+    min-height: 70px;
+    margin-top: 150px;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    flex-grow: 1;
+    order: 2;
+    background-color: #f0f0f0;
+    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+#player-div {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#player-div p {
+    font-size: 1.15em;
+}
+#player-select {
+    width: 50%;
+    height: 30vh;
+    min-height: 250px;
+    border: 2px solid black;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+.select-img {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 200px;
+    max-width: 250px;
+    display: block;
+    margin: auto;
+}
+
+#player-option-cntnr {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+#vertical-hr {
+    position: absolute;
+    background-color: gold;
+    box-shadow: 1px 1px 4px hsla(0, 0%, 21%, .5);
+    z-index: -1;
+    width: 10px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#computer-div {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#computer-div p {
+    font-size: 1.15em;
+}
+#computer-select {
+    width: 50%;
+    height: 30vh;
+    min-height: 250px;
+    border: 2px solid black;
+    background-color: #f0f0f0;
+    background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+#computer-option-cntnr {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.button-select {
+    box-shadow: 1px 1px 20px rgba(243, 239, 6, 0.5);
+    transform: scale(0.92, 0.92);
+}

@@ -1,69 +1,94 @@
-/*
-function userOption() {
-    let rawUserSelect = prompt("Choose between rock, paper, scissor");
-    let userSelect;
+let options = document.querySelectorAll('#player-option-cntnr button');
+let userScore = 0;
+let computerScore = 0;
 
-    if (rawUserSelect !== null) {
-        userSelect = rawUserSelect.toLowerCase();
-    }
+//Adding event listener on buttons
+options.forEach((option) => {
+    option.addEventListener('click', () => {
+        //Checks score if game already ended
+        if (userScore == 5) {
+            let play = confirm('Play again?');
+            if (play == true) {
+                location.reload()
+            } else {
+                return false;
+            }
+        } else if (computerScore == 5) {
+            play = confirm('Play again?');
+            if (play == true) {
+                location.reload()
+            } else {
+                return false;
+            }
+        } else {
+            runGame(option.dataset.value);
+        }
+    });
+});
 
-    if (userSelect === "rock") {
-        return rawUserSelect.toLowerCase();
-    } else if (userSelect === "paper") {
-        return rawUserSelect.toLowerCase();
-    } else if (userSelect === "scissor") {
-        return rawUserSelect.toLowerCase();
-    } else {
-        console.log("Please choose rock, paper, or scissor.");
-        userOption();
-    }
-}
+function runGame(userSelect) {
+    let userBoard = document.querySelector('#player-score');
+    let computerBoard = document.querySelector('#computer-score');
+    let comment = document.querySelector('#text-display');
 
-function getValue() {
-    return prompt("Select between rock, paper, or scissor");
-}
 
-function userOption() {
-    let rawUserSelect = getValue();
+
+    let computerSelect = computerOption();
+
+    //Displays User select
+    let userSelectDisplay = document.querySelector('#player-select');
+    let userSelectImg = document.querySelector('#player-select-img');
+    userSelectImg.setAttribute('src', `images/${userSelect}.png`);
+    userSelectImg.style.width = '280px';
+
+    userSelectDisplay.appendChild(userSelectImg);
+
+    //Displays Computer select
+    let computerSelectDisplay = document.querySelector('#computer-select');
+    let computerSelectImg = document.querySelector('#computer-select-img');
+    computerSelectImg.setAttribute('src', `images/${computerSelect}.png`);
+    computerSelectImg.style.width = '280px';
     
-    while (rawUserSelect === null) {
-        console.log("Please choose between rock, paper, or scissor");
-        rawUserSelect = rawUserSelect();
-    }
+    computerSelectDisplay.appendChild(computerSelectImg);
 
-    let userSelect = rawUserSelect.toLowerCase();
-    switch(userSelect) {
-        case "rock":
-        case "paper":
-        case "scissor":
+    switch (true) {
+        case userSelect === "rock" && computerSelect === "scissor":
+        case userSelect === "scissor" && computerSelect === "paper":
+        case userSelect === "paper" && computerSelect === "rock":
+            comment.textContent = `You win! ${userSelect} beats ${computerSelect}`;
+            console.log(`You win! ${userSelect} beats ${computerSelect}`);
+            ++userScore;
+            userBoard.textContent = userScore;
             break;
-        default:
-            console.log("Please choose between rock, paper, or scissor");
-            rawUserSelect();
-    }
-    return userSelect;
-}
-
-*/
-
-function userOption() {
-    let rawUserSelect = prompt("Select between rock, paper, or scissor");
-    let userSelect;
-
-    if (rawUserSelect !== null) {
-        userSelect = rawUserSelect.toLowerCase();
-    }
-
-    switch(userSelect) {
-        case "rock":
-        case "paper":
-        case "scissor":
+        case computerSelect === "rock" && userSelect === "scissor":
+        case computerSelect === "scissor" && userSelect === "paper":
+        case computerSelect === "paper" && userSelect === "rock":
+            comment.textContent = `You lose! ${computerSelect} beats ${userSelect}`;
+            console.log(`You lose! ${computerSelect} beats ${userSelect}`);
+            ++computerScore;
+            computerBoard.textContent = computerScore;
             break;
-        default:
-            console.log("Please choose between rock, paper, or scissor");
-            userSelect = userOption(); //Added '=' operator to fix issue returning previous incorrect value
+        case userSelect === computerSelect:
+            comment.textContent = "It's a draw!";
+            console.log("It's a draw!");
+            break;
     }
-    return userSelect;
+
+    if (userScore == 5) {
+        let play = confirm('You Win! Play again?');
+        if (play == true) {
+            location.reload()
+        } else {
+            return false;
+        }
+    } else if (computerScore == 5) {
+        play = confirm('You lose! Play again?');
+        if (play == true) {
+            location.reload()
+        } else {
+            return false;
+        }
+    }
 }
 
 function computerOption() {
@@ -79,44 +104,15 @@ function computerOption() {
         console.log("Error occurred, will run computer selection again.");
         computerOption();
     }
+
+    let computerOptions = document.querySelectorAll('#computer-option-cntnr button');
+    computerOptions.forEach((option) => {
+        option.classList.remove('button-select');
+        console.log(option);
+        if (option.dataset.value == computerSelect) {
+            option.classList.add('button-select');
+        }
+        });
+
     return computerSelect;
 }
-
-function runGame() {
-    let userScore = 0;
-    let computerScore = 0;
-    let userSelect;
-    let computerSelect;
-    
-    while (userScore < 5 && computerScore < 5) {
-        userSelect = userOption();
-        computerSelect = computerOption();
-        switch (true) {
-            case userSelect === "rock" && computerSelect === "scissor":
-            case userSelect === "scissor" && computerSelect === "paper":
-            case userSelect === "paper" && computerSelect === "rock":
-                console.log(`You win! ${userSelect} beats ${computerSelect}`);
-                ++userScore;
-                console.log(`User Score: ${userScore} ; Computer Score: ${computerScore}`);
-                break;
-            case computerSelect === "rock" && userSelect === "scissor":
-            case computerSelect === "scissor" && userSelect === "paper":
-            case computerSelect === "paper" && userSelect === "rock":
-                console.log(`You lose! ${computerSelect} beats ${userSelect}`);
-                ++computerScore;
-                console.log(`User Score: ${userScore} ; Computer Score: ${computerScore}`);
-                break;
-            case userSelect === computerSelect:
-                console.log("It's a draw!");
-                console.log(`User Score: ${userScore} ; Computer Score: ${computerScore}`);
-                break;
-        }
-    }
-    if (userScore > computerScore) {
-        return (`You won the game! User Score: ${userScore} ; Computer Score ${computerScore}`);
-    } else {
-        return (`You lost the game! User Score: ${userScore} ; Computer Score ${computerScore}`);
-    }
-}
-
-console.log(runGame());
